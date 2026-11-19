@@ -77,6 +77,34 @@ void	adapt_algo(t_list **stack_a,  t_count *count_op, t_flags *flags)
 	}
 }
 
+void	call_bench(t_flags *flags_list, t_count *count_op)
+{
+	printf("[bench] disorder:	%f\n", count_op->disorder);
+	printf("[bench] strategy:	");
+	if (flags_list->is_adaptive)
+		printf("adaptive / ");
+	else if (flags_list->is_complex)
+		printf("complex / ");
+	else if (flags_list->is_medium)
+		printf("medium / ");
+	else if (flags_list->is_simple)
+		printf("simple / ");
+
+	if (flags_list->is_complex)
+		printf("n log n\n");
+	else if (flags_list->is_medium)
+		printf("n√n\n");
+	if (flags_list->is_simple)
+		printf("n²\n");
+
+	int	total = count_op->pa + count_op->pb + count_op->ra + count_op->rb + count_op->rrb + count_op->sa + count_op->sb;
+	printf("[bench] total_ops:	%d\n", total);
+	printf("[bench] sa:	%d	sb:	%d	ss:	0	pa:	%d	pb:	%d\n",
+		count_op->sa, count_op->sb, count_op->pa, count_op->pb);
+	printf("[bench] ra:	%d	rb:	%d	rr:	0	rra:	0	rrb:	%d\n",
+		count_op->ra, count_op->rb, count_op->rrb);
+}
+
 void	which_sort(t_list **stack_a, t_flags *flags)
 {
 	t_count	count_op;
@@ -90,8 +118,8 @@ void	which_sort(t_list **stack_a, t_flags *flags)
 		bubble_sort(stack_a, &count_op);
 	else if (flags->is_adaptive == 1)
 		adapt_algo(stack_a, &count_op, flags);
-	// if (flags->is_bench)
-	// 	cal_bench(flags, count_op);
+	if (flags->is_bench)
+		call_bench(flags, &count_op);
 }
 
 int main(int argc, char **argv)
@@ -130,22 +158,6 @@ int main(int argc, char **argv)
 		printf("%d ", (curr->content));
 		curr = curr->next;
 	}
-	if (flags_list.is_adaptive)
-	{
-		printf("adaptive / ");
-		if (flags_list.is_complex)
-			printf("n log n");
-		else if (flags_list.is_medium)
-			printf("n√n");
-		if (flags_list.is_simple)
-			printf("n²");
-	}
-	else if (flags_list.is_complex)
-		printf("complex");
-	else if (flags_list.is_medium)
-		printf("medium");
-	else if (flags_list.is_simple)
-		printf("simple");
 	printf("\n");
 	ft_lstclear(&stack_a);
 }
