@@ -53,3 +53,42 @@ float	compute_disorder(t_list *stack_a)
 	}
 	return ((float)mistakes / total_pairs);
 }
+
+void	init_stack_a(t_list **stack_a, int argc, char **argv)
+{
+	t_list	*node;
+	int		i;
+
+	i = 0;
+	*stack_a = NULL;
+	while (i < argc)
+	{
+		node = ft_lstnew(ft_atoi(argv[i]));
+		if (!node)
+		{
+			ft_lstclear(stack_a);
+			exit(1);
+		}
+		ft_lstadd_back(stack_a, node);
+		i++;
+	}
+	update_index(*stack_a);
+}
+
+void	which_sort(t_list **stack_a, t_flags *flags)
+{
+	t_count	count_op;
+
+	count_op = (t_count){0, 0, 0, 0, 0, 0, 0, 0};
+	count_op.disorder = compute_disorder(*stack_a);
+	if (flags->is_complex == 1)
+		radix_sort(stack_a, &count_op);
+	else if (flags->is_medium == 1)
+		chunk_sort(stack_a, &count_op);
+	else if (flags->is_simple == 1)
+		bubble_sort(stack_a, &count_op);
+	else if (flags->is_adaptive == 1)
+		adapt_algo(stack_a, &count_op, flags);
+	if (flags->is_bench)
+		call_bench(flags, &count_op);
+}

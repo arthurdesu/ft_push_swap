@@ -5,7 +5,6 @@
 #include <stdlib.h>
 #include "libft/libft.h"
 
-
 typedef struct s_count
 {
 	int		pa;
@@ -17,6 +16,15 @@ typedef struct s_count
 	int		rrb;
 	float	disorder;
 }	t_count;
+
+typedef struct s_flags
+{
+	int	is_adaptive;
+	int	is_simple;
+	int	is_medium;
+	int	is_complex;
+	int	is_bench;
+} t_flags;
 
 #include <stdio.h>
 
@@ -33,5 +41,10 @@ void	radix_sort(t_list **stack_a, t_count *count_op);
 
 float	compute_disorder(t_list *stack_a);
 void	update_index(t_list *list);
+
+void	which_sort(t_list **stack_a, t_flags *flags);
+void	init_stack_a(t_list **stack_a, int argc, char **argv);
+void	adapt_algo(t_list **stack_a, t_count *count_op, t_flags *flags);
+void	call_bench(t_flags *flags_list, t_count *count_op);
 
 #endif

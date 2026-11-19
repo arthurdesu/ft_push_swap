@@ -1,27 +1,7 @@
 #include "push_swap.h"
-#include <stdio.h>
-
-typedef struct s_flags
-{
-	int	is_adaptive;
-	int	is_simple;
-	int	is_medium;
-	int	is_complex;
-	int	is_bench;
-} t_flags;
-
-// static void	init_flags(t_flags *flags)
-// {
-// 	flags->is_adaptive = 0;
-// 	flags->is_simple = 0;
-// 	flags->is_medium = 0;
-// 	flags->is_complex = 0;
-// 	flags->is_bench = 0;
-// }
 
 int	select_flag(char	*s, t_flags *flags_list)
 {
-	// init_flags(flags_list);
 	if (ft_strncmp("--simple", s, ft_strlen(s)) == 0)
 		flags_list->is_simple = 1;
 	else if (ft_strncmp("--medium", s, ft_strlen(s)) == 0)
@@ -35,31 +15,8 @@ int	select_flag(char	*s, t_flags *flags_list)
 	return (1);
 }
 
-void	init_stack_a(t_list **stack_a, int argc, char **argv)
+void	adapt_algo(t_list **stack_a, t_count *count_op, t_flags *flags)
 {
-	t_list	*node;
-	int		i;
-
-	i = 0;
-	*stack_a = NULL;
-	while (i < argc)
-	{
-		int x = ft_atoi(argv[i]);
-		node = ft_lstnew(x);
-		if (!node)
-		{
-			ft_lstclear(stack_a);
-			exit(1);
-		}
-		ft_lstadd_back(stack_a, node);
-		i++;
-	}
-	update_index(*stack_a);
-}
-
-void	adapt_algo(t_list **stack_a,  t_count *count_op, t_flags *flags)
-{
-	count_op->disorder = compute_disorder(*stack_a);
 	if (count_op->disorder < 0.2)
 	{
 		flags->is_simple = 1;
@@ -77,6 +34,15 @@ void	adapt_algo(t_list **stack_a,  t_count *count_op, t_flags *flags)
 	}
 }
 
+int	total(t_count *count_op)
+{
+	int	total;
+
+	total = count_op->pa + count_op->pb + count_op->ra
+		+ count_op->rb + count_op->rrb + count_op->sa + count_op->sb;
+	return (total);
+}
+
 void	call_bench(t_flags *flags_list, t_count *count_op)
 {
 	printf("[bench] disorder:	%f\n", count_op->disorder);
@@ -89,46 +55,25 @@ void	call_bench(t_flags *flags_list, t_count *count_op)
 		printf("medium / ");
 	else if (flags_list->is_simple)
 		printf("simple / ");
-
 	if (flags_list->is_complex)
 		printf("n log n\n");
 	else if (flags_list->is_medium)
 		printf("n√n\n");
 	if (flags_list->is_simple)
 		printf("n²\n");
-
-	int	total = count_op->pa + count_op->pb + count_op->ra + count_op->rb + count_op->rrb + count_op->sa + count_op->sb;
-	printf("[bench] total_ops:	%d\n", total);
+	printf("[bench] total_ops:	%d\n", total(count_op));
 	printf("[bench] sa:	%d	sb:	%d	ss:	0	pa:	%d	pb:	%d\n",
 		count_op->sa, count_op->sb, count_op->pa, count_op->pb);
 	printf("[bench] ra:	%d	rb:	%d	rr:	0	rra:	0	rrb:	%d\n",
 		count_op->ra, count_op->rb, count_op->rrb);
 }
 
-void	which_sort(t_list **stack_a, t_flags *flags)
-{
-	t_count	count_op;
-
-	count_op = (t_count){0,0,0,0,0,0, 0, 0};
-	if (flags->is_complex == 1)
-		radix_sort(stack_a, &count_op);
-	else if (flags->is_medium == 1)
-		chunk_sort(stack_a, &count_op);
-	else if (flags->is_simple == 1)
-		bubble_sort(stack_a, &count_op);
-	else if (flags->is_adaptive == 1)
-		adapt_algo(stack_a, &count_op, flags);
-	if (flags->is_bench)
-		call_bench(flags, &count_op);
-}
-
-int main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
 	t_list	*stack_a;
 	t_flags	flags_list;
-	int	i;
+	int		i;
 
-	// don't forget <= not <
 	if (argc <= 1)
 		return (0);
 	flags_list = (t_flags){0, 0, 0, 0, 0};
@@ -143,47 +88,10 @@ int main(int argc, char **argv)
 	else
 		i++;
 	init_stack_a(&stack_a, argc - i, argv + i);
-
 	which_sort(&stack_a, &flags_list);
+	ft_lstclear(&stack_a);
+}
+
 	// radix_sort(&stack_a, &count_op); // 33136
 	// chunk_sort(&stack_a, &count_op); // 52323
 	// bubble_sort(&stack_a, &count_op); // 5997000
-
-
-	// ################################################
-	printf("SORT NOW\n");
-	t_list *curr = stack_a;
-	while (curr)
-	{
-		printf("%d ", (curr->content));
-		curr = curr->next;
-	}
-	printf("\n");
-	ft_lstclear(&stack_a);
-}
-
-/*
-int main()
-{
-	int arr[10] = {10, 2, 4, 8, 3, -4, 0, 7, 6, 5};
-	size_t count = 10;
-	t_list	*stack_a = NULL;
-	for (size_t i = 0; i < count; i++)
-		ft_lstadd_back(&stack_a, ft_lstnew(arr[i]));
-	update_index(stack_a);
-
-	printf("disorder: %.2f\n", compute_disorder(stack_a));
-	// bubble_sort(&stack_a); // ==> 79 moves / 12 vs 7
-	// chunk_sort(&stack_a);
-	radix_sort(&stack_a);
-	printf("\n");
-	t_list *curr = stack_a;
-	while (curr)
-	{
-		printf("%d ", (curr->content));
-		curr = curr->next;
-	}
-	ft_lstclear(&stack_a);
-}
-
-*/
