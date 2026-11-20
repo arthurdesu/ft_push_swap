@@ -26,12 +26,33 @@ static void	fill_stack_a(t_list **stack_a, char **splitted)
 		{
 			ft_lstclear(stack_a);
 			ft_putstr_fd("Error\n", 2);
+			free_all(splitted, j);
 			exit(1);
 		}
 		ft_lstadd_back(stack_a, node);
 		j++;
 	}
 	free_all(splitted, j);
+}
+
+int	is_dup(t_list	*stack_a)
+{
+	t_list	*curr;
+	t_list	*tmp;
+
+	curr = stack_a;
+	while (curr)
+	{
+		tmp = curr->next;
+		while (tmp)
+		{
+			if (tmp->content == curr->content)
+				return (1);
+			tmp = tmp->next;
+		}
+		curr = curr->next;
+	}
+	return (0);
 }
 
 void	init_stack_a(t_list **stack_a, int argc, char **argv)
@@ -52,6 +73,12 @@ void	init_stack_a(t_list **stack_a, int argc, char **argv)
 		}
 		fill_stack_a(stack_a, splitted);
 		i++;
+	}
+	if (is_dup(*stack_a) == 1)
+	{
+		ft_lstclear(stack_a);
+		ft_printf("Errror\n");
+		exit(1);
 	}
 	update_index(*stack_a);
 }
