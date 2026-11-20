@@ -25,6 +25,7 @@ static void	fill_stack_a(t_list **stack_a, char **splitted)
 		if (!node)
 		{
 			ft_lstclear(stack_a);
+			ft_putstr_fd("Error\n", 2);
 			exit(1);
 		}
 		ft_lstadd_back(stack_a, node);
@@ -46,6 +47,7 @@ void	init_stack_a(t_list **stack_a, int argc, char **argv)
 		if (splitted == NULL)
 		{
 			ft_lstclear(stack_a);
+			ft_putstr_fd("Error\n", 2);
 			exit(1);
 		}
 		fill_stack_a(stack_a, splitted);
