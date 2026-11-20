@@ -1,38 +1,31 @@
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
-SRC = main.c bubble_sort.c chunk_sort.c moves.c radix_sort.c utils.c
-
-LIBFT_SRC = ./libft/ft_isalpha.c ./libft/ft_isdigit.c ./libft/ft_isalnum.c ./libft/ft_isascii.c ./libft/ft_isprint.c \
-	./libft/ft_strlen.c ./libft/ft_memset.c ./libft/ft_bzero.c ./libft/ft_memcpy.c ./libft/ft_memmove.c ./libft/ft_strlcpy.c \
-	./libft/ft_strlcat.c ./libft/ft_toupper.c ./libft/ft_tolower.c ./libft/ft_strchr.c ./libft/ft_strrchr.c ./libft/ft_strncmp.c \
-	./libft/ft_memchr.c ./libft/ft_memcmp.c ./libft/ft_strnstr.c ./libft/ft_atoi.c ./libft/ft_calloc.c ./libft/ft_strdup.c \
-	./libft/ft_substr.c ./libft/ft_strjoin.c ./libft/ft_strtrim.c ./libft/ft_split.c ./libft/ft_itoa.c ./libft/ft_strmapi.c \
-	./libft/ft_striteri.c ./libft/ft_putchar_fd.c ./libft/ft_putstr_fd.c ./libft/ft_putendl_fd.c ./libft/ft_putnbr_fd.c \
-	./libft/ft_lstnew.c ./libft/ft_lstadd_front.c ./libft/ft_lstsize.c ./libft/ft_lstlast.c ./libft/ft_lstadd_back.c \
-	./libft/ft_lstdelone.c ./libft/ft_lstclear.c
-LIBFT_OBJ = $(LIBFT_SRC:.c=.o)
-LIBFT_HEADER = ./libft/libft.h
-LIBFT_A = libft.a
-
-HEADERS = 
+SRC = main.c bubble_sort.c chunk_sort.c moves.c radix_sort.c
+HELPER = helper_func/adapt_algo.c  helper_func/call_bench.c  helper_func/compute_disorder.c  helper_func/ft_atoi.c  helper_func/ft_lstadd_back.c  \
+		helper_func/ft_lstclear.c  helper_func/ft_split.c helper_func/ft_strncmp.c  \
+		helper_func/init_stack_a.c  helper_func/select_flag.c  helper_func/update_index.c  helper_func/which_sort.c \
+		helper_func/ft_strlen.c helper_func/ft_lstsize.c helper_func/ft_lstnew.c
+OBJ = $(HELPER:.c=.o)
+LIBHELP = libhelp.a
+HEADERS = push_swap.h
 NAME = push_swap
 
-All: $(LIBFT_A) $(NAME)
+All: $(LIBHELP) $(NAME)
 
-$(LIBFT_A): $(LIBFT_OBJ)
-	@ar cr $(LIBFT_A) $(LIBFT_OBJ)
+$(LIBHELP): $(OBJ)
+	@ar cr $(LIBHELP) $(OBJ)
 
-%.o: %.c $(LIBFT_HEADER)
+%.o: %.c $(HEADER)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 $(NAME): $(SRC) $(HEADERS)
-	$(CC) $(CFLAGS) $(SRC) $(LIBFT_A) -o $@
+	$(CC) $(CFLAGS) $(SRC) $(LIBHELP) -o $@
 
 clean:
-	@rm -f $(LIBFT_OBJ)
+	@rm -f $(OBJ)
 
 fclean: clean
-	@rm -f $(NAME) $(LIBFT_A)
+	@rm -f $(NAME) $(LIBHELP)
 
 re: fclean all
 

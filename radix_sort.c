@@ -1,6 +1,6 @@
 #include "push_swap.h"
 
-size_t	get_max_bits(int max_index)
+static size_t	get_max_bits(int max_index)
 {
 	size_t	bits;
 
@@ -10,7 +10,7 @@ size_t	get_max_bits(int max_index)
 	return (bits);
 }
 
-int	max_index(t_list *list)
+static int	max_index(t_list *list)
 {
 	int	big;
 
@@ -55,6 +55,6 @@ void	radix_sort(t_list **stack_a, t_count *count_op)
 			count_op->pa++;
 			stack_b = push(stack_b, stack_a, "pa");
 		}
-		bit++;		
+		bit++;
 	}
 }
