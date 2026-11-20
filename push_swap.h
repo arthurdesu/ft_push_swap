@@ -1,9 +1,9 @@
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
-# include <unistd.h>
 # include <stdlib.h>
 # include <limits.h>
+# include "ft_printf/ft_printf.h"
 
 typedef struct s_list
 {
@@ -33,8 +33,6 @@ typedef struct s_flags
 	int	is_complex;
 	int	is_bench;
 }	t_flags;
-
-#include <stdio.h>
 
 int				is_sort(t_list *head);
 

@@ -12,7 +12,7 @@ void r_ab(t_list **head, char *s)
 		curr = curr->next;
 	curr->next = first;
 	first->next = NULL;
-	printf("%s\n", s);
+	ft_printf("%s\n", s);
 }
 
 void rr_ab(t_list **head, char *s)
@@ -34,7 +34,7 @@ void rr_ab(t_list **head, char *s)
 	}
 	last->next = *head;
 	*head = last;
-	printf("%s\n", s);
+	ft_printf("%s\n", s);
 }
 
 void	swap(t_list *node1, t_list *node2, char *s)
@@ -42,7 +42,7 @@ void	swap(t_list *node1, t_list *node2, char *s)
 	int tmp = node1->content;
 	node1->content = node2->content;
 	node2->content = tmp;
-	printf("%s\n", s);
+	ft_printf("%s\n", s);
 }
 
 t_list	*push(t_list *node, t_list **head, char *s)
@@ -52,6 +52,6 @@ t_list	*push(t_list *node, t_list **head, char *s)
 	tmp = node->next;
 	node->next = *head;
 	*head = node;
-	printf("%s\n", s);
+	ft_printf("%s\n", s);
 	return (tmp);
 }

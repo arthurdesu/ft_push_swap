@@ -23,7 +23,3 @@ int	main(int argc, char **argv)
 	which_sort(&stack_a, &flags_list);
 	ft_lstclear(&stack_a);
 }
-
-	// radix_sort(&stack_a, &count_op); // 33136
-	// chunk_sort(&stack_a, &count_op); // 52323
-	// bubble_sort(&stack_a, &count_op); // 5997000
