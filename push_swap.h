@@ -62,5 +62,6 @@ size_t			ft_strlen(const	char *str);
 int				ft_atoi(const char *nptr);
 t_list			*ft_lstnew(int content);
 unsigned int	ft_lstsize(t_list *lst);
+void			ft_putstr_fd(char *s, int fd);
 
 #endif

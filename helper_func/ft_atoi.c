@@ -10,12 +10,10 @@ static int	ft_convert_to_nbr(const char *nptr, int sign)
 	while (nptr[i] && nptr[i] >= '0' && nptr[i] <= '9')
 	{
 		nbr = nbr * 10 + nptr[i] - '0';
-		if (nbr > LONG_MAX)
+		if (nbr > INT_MAX)
 		{
-			if (sign == 1)
-				return (-1);
-			else
-				return (0);
+			ft_putstr_fd("Error\n", 2);
+			exit(1);
 		}
 		i++;
 	}
