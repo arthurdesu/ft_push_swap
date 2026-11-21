@@ -1,5 +1,5 @@
 #include "../push_swap.h"
-#include "checker.h"
+#include "gnl/get_next_line.h"
 
 void	sp(t_list *node1, t_list *node2)
 {
