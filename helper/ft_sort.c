@@ -6,11 +6,11 @@
 /*   By: mamehri <mamehri@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/20 21:17:47 by mamehri           #+#    #+#             */
-/*   Updated: 2026/11/21 09:32:52 by mamehri          ###   ########.fr       */
+/*   Updated: 2026/11/21 09:50:30 by mamehri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "helper.h"
+#include "../push_swap.h"
 
 static int	ft_total(t_count *c)
 {

@@ -6,11 +6,11 @@
 /*   By: mamehri <mamehri@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/20 14:58:29 by mamehri           #+#    #+#             */
-/*   Updated: 2026/11/21 09:32:55 by mamehri          ###   ########.fr       */
+/*   Updated: 2026/11/21 09:51:11 by mamehri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "helper.h"
+#include "../push_swap.h"
 
 static char	*ft_substr(char const *s, unsigned int start, size_t len)
 {

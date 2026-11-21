@@ -6,11 +6,11 @@
 /*   By: mamehri <mamehri@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/20 14:58:14 by mamehri           #+#    #+#             */
-/*   Updated: 2026/11/21 09:32:38 by mamehri          ###   ########.fr       */
+/*   Updated: 2026/11/21 09:51:01 by mamehri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "helper.h"
+#include "../push_swap.h"
 
 int	ft_putstr_fd(char *s, int fd)
 {
