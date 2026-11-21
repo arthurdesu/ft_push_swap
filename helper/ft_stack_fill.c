@@ -6,11 +6,11 @@
 /*   By: mamehri <mamehri@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/20 17:31:36 by mamehri           #+#    #+#             */
-/*   Updated: 2026/11/21 09:32:59 by mamehri          ###   ########.fr       */
+/*   Updated: 2026/11/21 09:51:17 by mamehri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "helper.h"
+#include "../push_swap.h"
 
 static void	ft_free(char **splitted)
 {

@@ -6,11 +6,11 @@
 /*   By: mamehri <mamehri@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/20 14:56:51 by mamehri           #+#    #+#             */
-/*   Updated: 2026/11/21 09:33:05 by mamehri          ###   ########.fr       */
+/*   Updated: 2026/11/21 09:51:25 by mamehri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "helper.h"
+#include "../push_swap.h"
 
 int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {

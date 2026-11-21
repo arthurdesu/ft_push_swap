@@ -6,11 +6,11 @@
 /*   By: mamehri <mamehri@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/20 17:13:16 by mamehri           #+#    #+#             */
-/*   Updated: 2026/11/21 09:32:42 by mamehri          ###   ########.fr       */
+/*   Updated: 2026/11/21 09:51:05 by mamehri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "helper.h"
+#include "../push_swap.h"
 
 void	ft_set_index(t_list *a)
 {

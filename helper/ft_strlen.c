@@ -6,11 +6,11 @@
 /*   By: mamehri <mamehri@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/20 14:57:08 by mamehri           #+#    #+#             */
-/*   Updated: 2026/11/21 09:33:02 by mamehri          ###   ########.fr       */
+/*   Updated: 2026/11/21 09:51:21 by mamehri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "helper.h"
+#include "../push_swap.h"
 
 size_t	ft_strlen(const	char *str)
 {
