@@ -6,7 +6,7 @@
 /*   By: mamehri <mamehri@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/20 14:56:59 by mamehri           #+#    #+#             */
-/*   Updated: 2026/11/21 09:50:35 by mamehri          ###   ########.fr       */
+/*   Updated: 2026/11/21 11:38:11 by mamehri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,13 +54,10 @@ int	ft_atoi(const char *nptr, int *check)
 			sign = -1;
 		i++;
 	}
-	// if ((nptr[i] == '-' || nptr[i] == '+'))
-	// {
-	// 	if ((nptr[i + 1] >= '0' && nptr[i + 1] <= '9'))
-	// 	{
-	// 		*check = 0;
-	// 		return (-1);
-	// 	}
-	// }
+	if (!nptr[i])
+	{
+		*check = 0;
+		return (-1);
+	}
 	return (ft_convert_to_nbr(nptr + i, sign, check));
 }

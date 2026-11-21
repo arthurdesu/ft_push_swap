@@ -6,7 +6,7 @@
 /*   By: mamehri <mamehri@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/20 17:31:36 by mamehri           #+#    #+#             */
-/*   Updated: 2026/11/21 09:51:17 by mamehri          ###   ########.fr       */
+/*   Updated: 2026/11/21 11:39:08 by mamehri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,13 +41,14 @@ static void	ft_fill(t_list **stack_a, char **splitted)
 	new_node = NULL;
 	while (splitted[j] != NULL)
 	{
-		nbr = ft_atoi(splitted[j++], &check);
+		nbr = ft_atoi(splitted[j], &check);
 		if (!check)
 			ft_exit(stack_a, splitted);
 		new_node = ft_lstnew(nbr);
 		if (!new_node)
 			ft_exit(stack_a, splitted);
 		ft_lstadd_back(stack_a, new_node);
+		j++;
 	}
 }
 
