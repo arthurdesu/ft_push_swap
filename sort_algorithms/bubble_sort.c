@@ -6,22 +6,11 @@
 /*   By: ymoubtas <ymoubtas@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/20 15:00:19 by mamehri           #+#    #+#             */
-/*   Updated: 2026/11/21 09:45:33 by ymoubtas         ###   ########.fr       */
+/*   Updated: 2026/11/21 11:56:10 by ymoubtas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
-
-int	is_sort(t_list *head)
-{
-	while (head && head->next)
-	{
-		if (head->content > head->next->content)
-			return (0);
-		head = head->next;
-	}
-	return (1);
-}
 
 void	bubble_sort(t_list **stack_a, t_count *count_op)
 {

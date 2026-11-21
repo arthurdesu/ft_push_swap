@@ -6,7 +6,7 @@
 /*   By: ymoubtas <ymoubtas@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/20 15:00:29 by mamehri           #+#    #+#             */
-/*   Updated: 2026/11/21 09:45:38 by ymoubtas         ###   ########.fr       */
+/*   Updated: 2026/11/21 11:45:28 by ymoubtas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,17 +22,16 @@ static int	sqrt_of(long n)
 	return (i);
 }
 
-size_t	min_pos(t_list *list)
+size_t	min_pos(t_list *list, int limit)
 {
 	t_list	*curr;
 	int		minimum;
 	size_t	pos;
 
 	curr = list;
-	minimum = curr->content;
 	while (curr)
 	{
-		if (curr->content < minimum)
+		if (curr->index < limit)
 			minimum = curr->content;
 		curr = curr->next;
 	}
@@ -45,13 +44,13 @@ size_t	min_pos(t_list *list)
 	return (pos);
 }
 
-void	rotate_a(t_list **stack_a, t_count *count_op)
+void	rotate_a(t_list **stack_a, t_count *count_op, int limit)
 {
 	size_t	size;
 	size_t	min;
 
 	size = ft_lstsize(*stack_a);
-	min = min_pos(*stack_a);
+	min = min_pos(*stack_a, limit);
 	if (min <= size / 2)
 	{
 		while (min--)
@@ -142,7 +141,7 @@ void	move_to_b(t_list **stack_a, t_list **stack_b, t_count *count_op)
 				limit += (size_a / n_chunks);
 		}
 		else
-			rotate_a(stack_a, count_op);
+			rotate_a(stack_a, count_op, limit);
 	}
 	while (*stack_b)
 	{

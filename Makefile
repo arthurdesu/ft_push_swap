@@ -20,6 +20,7 @@ SRCS		= sort_algorithms/bubble_sort.c \
 			helper/ft_putstr_fd.c \
 			helper/ft_set_index.c \
 			helper/ft_sort.c \
+			helper/is_sort.c \
 			helper/ft_split.c \
 			helper/ft_stack_fill.c \
 			helper/ft_strlen.c \
