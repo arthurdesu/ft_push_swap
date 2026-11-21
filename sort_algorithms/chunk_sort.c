@@ -1,8 +1,20 @@
-#include "push_swap.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   chunk_sort.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mamehri <mamehri@student.1337.ma>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/11/20 15:00:29 by mamehri           #+#    #+#             */
+/*   Updated: 2026/11/21 09:05:18 by mamehri          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-static int	sqrt_of(int n)
+#include "../push_swap.h"
+
+static int	sqrt_of(long n)
 {
-	int	i;
+	long	i;
 
 	i = 0;
 	while (i * i <= n)
@@ -45,7 +57,7 @@ void	rotate_a(t_list **stack_a, t_count *count_op)
 		while (min--)
 		{
 			count_op->ra++;
-			r_ab(stack_a, "ra");
+			ft_r(stack_a, "ra");
 		}
 	}
 	else
@@ -54,7 +66,7 @@ void	rotate_a(t_list **stack_a, t_count *count_op)
 		while (min--)
 		{
 			count_op->rra++;
-			rr_ab(stack_a, "rra");
+			ft_rr(stack_a, "rra");
 		}
 	}
 }
@@ -94,7 +106,7 @@ void	rotate_b(t_list **stack_b, t_count *count_op)
 		while (max--)
 		{
 			count_op->rb++;
-			r_ab(stack_b, "rb");
+			ft_r(stack_b, "rb");
 		}
 	}
 	else
@@ -103,7 +115,7 @@ void	rotate_b(t_list **stack_b, t_count *count_op)
 		while (max--)
 		{
 			count_op->rrb++;
-			rr_ab(stack_b, "rrb");
+			ft_rr(stack_b, "rrb");
 		}
 	}
 }
@@ -123,7 +135,7 @@ void	move_to_b(t_list **stack_a, t_list **stack_b, t_count *count_op)
 	{
 		if ((*stack_a)->index < limit)
 		{
-			*stack_a = push(*stack_a, stack_b, "pb");
+			*stack_a = ft_push(*stack_a, stack_b, "pb");
 			count_op->pb++;
 			pushed++;
 			if (pushed == limit)
@@ -135,7 +147,7 @@ void	move_to_b(t_list **stack_a, t_list **stack_b, t_count *count_op)
 	while (*stack_b)
 	{
 		rotate_b(stack_b, count_op);
-		*stack_b = push(*stack_b, stack_a, "pa");
+		*stack_b = ft_push(*stack_b, stack_a, "pa");
 		count_op->pa++;
 	}
 	
@@ -148,123 +160,3 @@ void	chunk_sort(t_list **stack_a, t_count *count_op)
 	stack_b = NULL;
 	move_to_b(stack_a, &stack_b, count_op);
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// static void	move_to_stack_b(t_list **stack_a, t_list **stack_b,
-// 	t_count *count_op)
-// {
-// 	int		limit;
-// 	int		pushed;
-// 	int		size;
-// 	int		chunks;
-
-// 	size = ft_lstsize(*stack_a);
-// 	chunks = sqrt_of(size);
-// 	pushed = 0;
-// 	limit = size / chunks;
-// 	while (*stack_a)
-// 	{
-// 		if ((*stack_a)->index < limit)
-// 		{
-// 			*stack_a = push((*stack_a), stack_b, "pb");
-// 			count_op->pb++;
-// 			pushed++;
-// 			if (pushed == limit)
-// 				limit += size / chunks;
-// 		}
-// 		else
-// 		{
-// 			r_ab(stack_a, "ra");
-// 			count_op->ra++;
-// 		}
-// 	}
-// }
-
-// static void	move_to_stack_a(t_list **stack_a, t_list **stack_b,
-// 								t_count *count_op)
-// {
-// 	size_t	pos;
-// 	size_t	size_b;
-
-// 	while (*stack_b)
-// 	{
-// 		pos = max_of(*stack_b);
-// 		size_b = ft_lstsize(*stack_b);
-// 		if (pos < size_b - pos)
-// 			while (pos-- && count_op->rb++)
-// 				r_ab(stack_b, "rb");
-// 		else
-// 		{
-// 			pos = size_b - pos;
-// 			while (pos-- && count_op->rrb++)
-// 				rr_ab(stack_b, "rrb");
-// 		}
-// 		*stack_b = push(*stack_b, stack_a, "pa");
-// 		count_op->pa++;
-// 	}
-// }
-
-// void	chunk_sort(t_list **stack_a, t_count *count_op)
-// {
-// 	t_list	*stack_b;
-
-// 	stack_b = NULL;
-// 	move_to_stack_b(stack_a, &stack_b, count_op);
-// 	move_to_stack_a(stack_a, &stack_b, count_op);
-// }
