@@ -32,7 +32,7 @@ void	radix_sort(t_list **stack_a, t_count *count_op)
 	size_t	size;
 
 	stack_b = NULL;
-	max_bits = get_max_bits(max_index(*stack_a));
+	max_bits = get_max_bits(ft_lstsize(*stack_a));
 	bit = 0;
 	while (bit < max_bits)
 	{

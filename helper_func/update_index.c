@@ -4,15 +4,13 @@ static t_list	*min(t_list *list)
 {
 	t_list	*the_min;
 
-	the_min = list;
+	the_min = NULL;
 	while (list)
 	{
-		if (the_min->content > list->content && list->index == -1)
+		if (list->index == -1 && (!the_min || (the_min->content > list->content)))
 			the_min = list;
 		list = list->next;
 	}
-	if (the_min->index != -1)
-		return (NULL);
 	return (the_min);
 }
 
