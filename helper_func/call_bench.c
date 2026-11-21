@@ -5,7 +5,7 @@ static int	total(t_count *count_op)
 	int	total;
 
 	total = count_op->pa + count_op->pb + count_op->ra
-		+ count_op->rb + count_op->rrb + count_op->sa + count_op->sb;
+		+ count_op->rb + count_op->rrb + count_op->sa + count_op->sb + count_op->rra;
 	return (total);
 }
 
@@ -30,6 +30,6 @@ void	call_bench(t_flags *flags_list, t_count *count_op)
 	ft_printf("[bench] total_ops:	%d\n", total(count_op));
 	ft_printf("[bench] sa:	%d	sb:	%d	ss:	0	pa:	%d	pb:	%d\n",
 		count_op->sa, count_op->sb, count_op->pa, count_op->pb);
-	ft_printf("[bench] ra:	%d	rb:	%d	rr:	0	rra:	0	rrb:	%d\n",
-		count_op->ra, count_op->rb, count_op->rrb);
+	ft_printf("[bench] ra:	%d	rb:	%d	rr:	0	rra:	%d	rrb:	%d	rrr:	0\n",
+		count_op->ra, count_op->rb, count_op->rra, count_op->rrb);
 }
