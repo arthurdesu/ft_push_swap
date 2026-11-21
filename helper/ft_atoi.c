@@ -6,11 +6,11 @@
 /*   By: mamehri <mamehri@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/20 14:56:59 by mamehri           #+#    #+#             */
-/*   Updated: 2026/11/21 09:32:04 by mamehri          ###   ########.fr       */
+/*   Updated: 2026/11/21 09:50:35 by mamehri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "helper.h"
+#include "../push_swap.h"
 
 static int	ft_convert_to_nbr(const char *nptr, int sign, int *check)
 {

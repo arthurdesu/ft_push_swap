@@ -6,11 +6,11 @@
 /*   By: mamehri <mamehri@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/20 11:48:38 by mamehri           #+#    #+#             */
-/*   Updated: 2026/11/21 09:35:21 by mamehri          ###   ########.fr       */
+/*   Updated: 2026/11/21 09:50:38 by mamehri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "helper.h"
+#include "../push_swap.h"
 
 static int	is_flag(char *s, char *flag)
 {
