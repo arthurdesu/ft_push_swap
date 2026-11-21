@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mamehri <mamehri@student.1337.ma>          +#+  +:+       +#+        */
+/*   By: ymoubtas <ymoubtas@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/20 09:58:05 by mamehri           #+#    #+#             */
-/*   Updated: 2026/11/21 09:54:26 by mamehri          ###   ########.fr       */
+/*   Updated: 2026/11/21 11:17:39 by ymoubtas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,7 @@ int				ft_lstclear(t_list **lst);
 int				ft_putstr_fd(char *s, int fd);
 int				ft_atoi(const char *nptr, int *check);
 int				ft_strncmp(const char *s1, const char *s2, size_t n);
+int				is_sort(t_list *head);
 
 unsigned int	ft_lstsize(t_list *lst);
 

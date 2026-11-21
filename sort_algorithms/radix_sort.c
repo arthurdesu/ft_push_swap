@@ -1,18 +1,6 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   radix_sort.c                                       :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: ymoubtas <ymoubtas@student.1337.ma>        +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/11/20 15:00:40 by mamehri           #+#    #+#             */
-/*   Updated: 2026/11/21 10:08:47 by ymoubtas         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "../push_swap.h"
 
-static size_t	get_max_bits(int max_index)
+size_t	get_max_bits(int max_index)
 {
 	size_t	bits;
 
@@ -20,6 +8,20 @@ static size_t	get_max_bits(int max_index)
 	while ((max_index >> bits) != 0)
 		bits++;
 	return (bits);
+}
+
+int	max_index(t_list *list)
+{
+	int	big;
+
+	big = list->index;
+	while (list)
+	{
+		if (list->index > big)
+			big = list->index;
+		list = list->next;
+	}
+	return (big);
 }
 
 void	radix_sort(t_list **stack_a, t_count *count_op)
@@ -30,7 +32,7 @@ void	radix_sort(t_list **stack_a, t_count *count_op)
 	size_t	size;
 
 	stack_b = NULL;
-	max_bits = get_max_bits(ft_lstsize(*stack_a) - 1);
+	max_bits = get_max_bits(max_index(*stack_a));
 	bit = 0;
 	while (bit < max_bits)
 	{
@@ -53,6 +55,6 @@ void	radix_sort(t_list **stack_a, t_count *count_op)
 			count_op->pa++;
 			stack_b = ft_push(stack_b, stack_a, "pa");
 		}
-		bit++;
+		bit++;		
 	}
 }

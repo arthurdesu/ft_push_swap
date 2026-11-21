@@ -6,7 +6,7 @@
 /*   By: ymoubtas <ymoubtas@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/20 09:57:48 by mamehri           #+#    #+#             */
-/*   Updated: 2026/11/21 09:43:59 by ymoubtas         ###   ########.fr       */
+/*   Updated: 2026/11/21 11:24:01 by ymoubtas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,5 +27,6 @@ int	main(int ac, char **av)
 	ft_stack_fill(&stack_a, ac, av, i);
 	ft_dup_nbr(&stack_a);
 	ft_sort(&stack_a, &flags);
+	ft_lstclear(&stack_a);
 	return (0);
 }

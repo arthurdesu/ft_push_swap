@@ -1,5 +1,5 @@
 #include "../push_swap.h"
-#include "gnl/get_next_line.h"
+#include "checker.h"
 
 void	sp(t_list *node1, t_list *node2)
 {
@@ -109,7 +109,7 @@ int	main(int argc, char **argv)
 		return (0);
 	i = 1;
 	stack_a = NULL;
-	init_stack_a(&stack_a, argc - i, argv + i);
+	ft_stack_fill(&stack_a, argc, argv, i);
 	
 	checker(&stack_a);
 	ft_lstclear(&stack_a);
