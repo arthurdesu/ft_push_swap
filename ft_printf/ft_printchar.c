@@ -6,13 +6,13 @@
 /*   By: ymoubtas <ymoubtas@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/02 14:10:37 by ymoubtas          #+#    #+#             */
-/*   Updated: 2026/11/02 14:10:38 by ymoubtas         ###   ########.fr       */
+/*   Updated: 2026/11/23 10:09:12 by ymoubtas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_printchar(int c)
+int	ft_printchar(int fd, int c)
 {
-	return (write(1, &c, 1));
+	return (write(fd, &c, 1));
 }

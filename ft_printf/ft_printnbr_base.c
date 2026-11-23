@@ -6,7 +6,7 @@
 /*   By: ymoubtas <ymoubtas@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/02 14:11:02 by ymoubtas          #+#    #+#             */
-/*   Updated: 2026/11/02 14:11:03 by ymoubtas         ###   ########.fr       */
+/*   Updated: 2026/11/23 10:09:05 by ymoubtas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static int	ft_len(const char *s)
 	return (i);
 }
 
-int	ft_printnbr_base(long n, char *srcbase)
+int	ft_printnbr_base(int fd, long n, char *srcbase)
 {
 	int	count;
 	int	written;
@@ -33,19 +33,19 @@ int	ft_printnbr_base(long n, char *srcbase)
 	base = ft_len(srcbase);
 	if (n < 0)
 	{
-		if (ft_printchar('-') < 0)
+		if (ft_printchar(fd, '-') < 0)
 			return (-1);
 		count++;
 		n = -n;
 	}
 	if (n >= base)
 	{
-		written = ft_printnbr_base(n / base, srcbase);
+		written = ft_printnbr_base(fd, n / base, srcbase);
 		if (written < 0)
 			return (-1);
 		count += written;
 	}
-	written = ft_printchar(srcbase[n % base]);
+	written = ft_printchar(fd, srcbase[n % base]);
 	if (written < 0)
 		return (-1);
 	return (count + written);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_sort.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mamehri <mamehri@student.1337.ma>          +#+  +:+       +#+        */
+/*   By: ymoubtas <ymoubtas@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/20 21:17:47 by mamehri           #+#    #+#             */
-/*   Updated: 2026/11/21 09:50:30 by mamehri          ###   ########.fr       */
+/*   Updated: 2026/11/21 12:09:27 by ymoubtas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,25 +22,25 @@ static void	ft_bench(t_flags *flags_list, t_count *count_op)
 	ft_printf("[bench] disorder:	%f\n", count_op->disorder);
 	ft_printf("[bench] strategy:	");
 	if (flags_list->adaptive)
-		ft_printf("Adaptive / ");
+		ft_printf(2, "Adaptive / ");
 	else if (flags_list->simple)
-		ft_printf("Simple / ");
+		ft_printf(2, "Simple / ");
 	else if (flags_list->medium)
-		ft_printf("Medium / ");
+		ft_printf(2, "Medium / ");
 	else if (flags_list->complex)
-		ft_printf("Complex / ");
+		ft_printf(2, "Complex / ");
 	else
-		ft_printf("Adaptive / ");
+		ft_printf(2, "Adaptive / ");
 	if (flags_list->simple)
-		ft_printf("O(n²)\n");
+		ft_printf(2, "O(n²)\n");
 	else if (flags_list->medium)
-		ft_printf("O(n√n)\n");
+		ft_printf(2, "O(n√n)\n");
 	else if (flags_list->complex)
-		ft_printf("O(n log n)\n");
-	ft_printf("[bench] total_ops:	%d\n", ft_total(count_op));
-	ft_printf("[bench] sa:	%d	sb:	%d	ss:	0	pa:	%d	pb:	%d\n",
+		ft_printf(2, "O(n log n)\n");
+	ft_printf(2, "[bench] total_ops:	%d\n", ft_total(count_op));
+	ft_printf(2, "[bench] sa:	%d	sb:	%d	ss:	0	pa:	%d	pb:	%d\n",
 		count_op->sa, count_op->sb, count_op->pa, count_op->pb);
-	ft_printf("[bench] ra:	%d	rb:	%d	rr:	0	rra:	%d	rrb:	%d	rrr:	0\n",
+	ft_printf(2, "[bench] ra:	%d	rb:	%d	rr:	0	rra:	%d	rrb:	%d	rrr:	0\n",
 		count_op->ra, count_op->rb, count_op->rra, count_op->rrb);
 }
 
