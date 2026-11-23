@@ -47,21 +47,21 @@ OBJ_BNS		= $(SRCS_BNS:.c=.o)
 all: $(NAME)
 
 $(NAME): $(OBJ_MAIN) $(OBJ)
-	$(CC) $(CFLAGS) $^ -o $@
+	@$(CC) $(CFLAGS) $^ -o $@
 
 bonus: $(NAME_BNS)
 
 $(NAME_BNS): $(OBJ_BNS) $(OBJ)
-	$(CC) $(CFLAGS) $^ -o $@
+	@$(CC) $(CFLAGS) $^ -o $@
 
 %.o: %.c $(HEADERS) $(HEADERS_BNS)
-	$(CC) $(CFLAGS) -c $< -o $@
+	@$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-	$(RM) $(OBJ_MAIN) $(OBJ) $(OBJ_BNS)
+	@$(RM) $(OBJ_MAIN) $(OBJ) $(OBJ_BNS)
 
 fclean: clean
-	$(RM) $(NAME) $(NAME_BNS)
+	@$(RM) $(NAME) $(NAME_BNS)
 
 re: fclean all
 

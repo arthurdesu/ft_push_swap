@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ymoubtas <ymoubtas@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: mamehri <mamehri@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/20 09:58:05 by mamehri           #+#    #+#             */
-/*   Updated: 2026/11/21 11:17:39 by ymoubtas         ###   ########.fr       */
+/*   Updated: 2026/11/22 14:39:36 by mamehri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 # include "ft_printf/ft_printf.h"
 # include <stdlib.h>
 # include <limits.h>
-# include <unistd.h>
 
 # define SIMPLE "--simple"
 # define MEDIUM "--medium"
@@ -54,7 +53,7 @@ typedef struct s_count
 }	t_count;
 
 void	chunk_sort(t_list **stack_a, t_count *count_op);
-void	bubble_sort(t_list **stack_a, t_count *count_op);
+void	bubble_sort(t_list **stack_a, t_list **stack_b, t_count *count_op);
 void	radix_sort(t_list **stack_a, t_count *count_op);
 
 // Helper:

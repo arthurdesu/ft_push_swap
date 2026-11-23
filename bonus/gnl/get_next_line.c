@@ -3,111 +3,118 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ymoubtas <ymoubtas@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: mamehri <mamehri@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/11/12 09:20:21 by ymoubtas          #+#    #+#             */
-/*   Updated: 2026/11/12 09:20:22 by ymoubtas         ###   ########.fr       */
+/*   Created: 2026/11/06 06:08:54 by mamehri           #+#    #+#             */
+/*   Updated: 2026/11/21 14:20:55 by mamehri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-static char	*join(char **s1, char *s2, ssize_t s2_size)
+static int	ft_check_new_line(char *s)
 {
-	char	*new_holder;
-	int		holder_len;
+	int	i;
 
-	holder_len = index_of(*s1, '\0');
-	new_holder = malloc(holder_len + s2_size + 1);
-	if (!new_holder)
-		return (NULL);
-	if (*s1)
-		ft_memcpy(new_holder, *s1, holder_len);
-	ft_memcpy(new_holder + holder_len, s2, s2_size);
-	new_holder[holder_len + s2_size] = '\0';
-	free(*s1);
-	*s1 = new_holder;
-	return (new_holder);
+	i = 0;
+	if (!s)
+		return (0);
+	while (s[i])
+		if (s[i++] == '\n')
+			return (1);
+	return (0);
 }
 
-static char	*read_buf_to_holder(char **holder, int fd)
+static char	*ft_extract(char **stash)
 {
-	char	*buf;
-	ssize_t	bytes_read;
+	char	*tmp;
+	size_t	len;
+	size_t	i;
 
-	if (*holder && index_of(*holder, '\n') > -1)
-		return (*holder);
-	buf = malloc((size_t)BUFFER_SIZE + 1);
-	if (!buf)
-		return (NULL);
-	bytes_read = read(fd, buf, (size_t)BUFFER_SIZE);
-	while (bytes_read > 0)
+	i = 0;
+	len = 0;
+	while (!ft_is_newline(*((*stash) + len)) && *((*stash) + len))
+		len++;
+	if (ft_is_newline(*((*stash) + len)))
+		len++;
+	tmp = malloc(ft_strlen_gnl(*stash) - len + 1);
+	if (!tmp)
+		return (ft_free(stash));
+	while (*((*stash) + i + len))
 	{
-		buf[bytes_read] = '\0';
-		if (join(holder, buf, bytes_read) == NULL)
-		{
-			free(buf);
-			return (NULL);
-		}
-		if (index_of(*holder, '\n') > -1)
-			break ;
-		bytes_read = read(fd, buf, (size_t)BUFFER_SIZE);
+		tmp[i] = *((*stash) + i + len);
+		i++;
 	}
-	free(buf);
-	if (bytes_read < 0 || (bytes_read == 0 && !(*holder)))
-		return (NULL);
-	return (*holder);
+	tmp[i] = '\0';
+	free(*stash);
+	*stash = tmp;
+	return (*stash);
 }
 
-static char	*update_line(char *holder)
+static char	*ft_ret_extract(char **stash)
 {
-	char	*new_line;
-	int		line_len;
+	char	*ret;
+	size_t	size;
+	size_t	index;
 
-	line_len = index_of(holder, '\n');
-	if (line_len == -1)
-		line_len = index_of(holder, '\0');
-	else
-		line_len++;
-	new_line = NULL;
-	new_line = join(&new_line, holder, line_len);
-	return (new_line);
+	size = 0;
+	index = 0;
+	while (!ft_is_newline(stash[0][size]) && stash[0][size])
+		size++;
+	if (ft_is_newline(stash[0][size]))
+		size++;
+	ret = malloc(size + 1);
+	if (!ret)
+		return (ft_free(stash));
+	while (index < size)
+	{
+		ret[index] = *((*stash) + index);
+		index++;
+	}
+	ret[index] = '\0';
+	if (!ft_extract(stash))
+		return (ft_free(&ret));
+	return (ret);
 }
 
-static char	*update_holder(char **holder)
+static int	ft_loop(int fd, char **stash, char *buf)
 {
-	char	*new_holder;
-	int		holder_len;
-	int		total;
+	char	*tmp;
+	ssize_t	bytes;
 
-	holder_len = index_of(*holder, '\n');
-	if (holder_len == -1)
-		return (NULL);
-	holder_len++;
-	new_holder = NULL;
-	total = index_of(*holder, '\0') - holder_len;
-	if (total != 0)
-		join(&new_holder, *holder + holder_len, total);
-	free(*holder);
-	*holder = new_holder;
-	return (new_holder);
+	while (1)
+	{
+		bytes = read(fd, buf, BUFFER_SIZE);
+		if (bytes < 0)
+			return (0);
+		buf[bytes] = '\0';
+		tmp = *stash;
+		*stash = ft_strjoin(tmp, buf);
+		free(tmp);
+		if (!*stash)
+			return (0);
+		if (bytes == 0 || ft_check_new_line(*stash))
+			return (1);
+	}
 }
 
 char	*get_next_line(int fd)
 {
-	static char	*holder = NULL;
-	char		*line;
+	static char	*stash = NULL;
+	char		*buf;
 
-	if (fd < 0 || (size_t)BUFFER_SIZE <= 0)
-		return (NULL);
-	if (read_buf_to_holder(&holder, fd) == NULL)
-		return (free_s(&holder));
-	line = update_line(holder);
-	if (!line)
-		return (free_s(&holder));
-	if (update_holder(&holder) == NULL)
-		free_s(&holder);
-	if (line)
-		return (line);
-	return (NULL);
+	if (fd < 0 || BUFFER_SIZE <= 0)
+		return (ft_free(&stash));
+	buf = malloc((size_t)BUFFER_SIZE + 1);
+	if (!buf)
+		return (ft_free(&stash));
+	if (!ft_loop(fd, &stash, buf))
+	{
+		ft_free(&stash);
+		return (ft_free(&buf));
+	}
+	ft_free(&buf);
+	if (!*stash)
+		return (ft_free(&stash));
+	return (ft_ret_extract(&stash));
 }

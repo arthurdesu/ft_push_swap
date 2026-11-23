@@ -6,7 +6,7 @@
 /*   By: ymoubtas <ymoubtas@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/20 15:00:29 by mamehri           #+#    #+#             */
-/*   Updated: 2026/11/21 11:45:28 by ymoubtas         ###   ########.fr       */
+/*   Updated: 2026/11/23 10:26:37 by ymoubtas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -149,7 +149,6 @@ void	move_to_b(t_list **stack_a, t_list **stack_b, t_count *count_op)
 		*stack_b = ft_push(*stack_b, stack_a, "pa");
 		count_op->pa++;
 	}
-	
 }
 
 void	chunk_sort(t_list **stack_a, t_count *count_op)

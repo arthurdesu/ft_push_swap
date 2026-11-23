@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   radix_sort.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mamehri <mamehri@student.1337.ma>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/11/21 14:44:49 by mamehri           #+#    #+#             */
+/*   Updated: 2026/11/21 14:46:14 by mamehri          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../push_swap.h"
 
 size_t	get_max_bits(int max_index)
@@ -55,6 +67,6 @@ void	radix_sort(t_list **stack_a, t_count *count_op)
 			count_op->pa++;
 			stack_b = ft_push(stack_b, stack_a, "pa");
 		}
-		bit++;		
+		bit++;
 	}
 }

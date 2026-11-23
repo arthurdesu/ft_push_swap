@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_moves.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mamehri <mamehri@student.1337.ma>          +#+  +:+       +#+        */
+/*   By: ymoubtas <ymoubtas@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/20 16:49:30 by mamehri           #+#    #+#             */
-/*   Updated: 2026/11/21 09:47:22 by mamehri          ###   ########.fr       */
+/*   Updated: 2026/11/23 10:17:18 by ymoubtas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	ft_r(t_list **head, char *s)
 		curr = curr->next;
 	curr->next = first;
 	first->next = NULL;
-	ft_printf("%s\n", s);
+	ft_printf(1, "%s\n", s);
 }
 
 void	ft_rr(t_list **head, char *s)
@@ -46,7 +46,7 @@ void	ft_rr(t_list **head, char *s)
 	}
 	last->next = *head;
 	*head = last;
-	ft_printf("%s\n", s);
+	ft_printf(1, "%s\n", s);
 }
 
 void	ft_swap(t_list *node1, t_list *node2, char *s)
@@ -56,7 +56,7 @@ void	ft_swap(t_list *node1, t_list *node2, char *s)
 	tmp = node1->content;
 	node1->content = node2->content;
 	node2->content = tmp;
-	ft_printf("%s\n", s);
+	ft_printf(1, "%s\n", s);
 }
 
 t_list	*ft_push(t_list *node, t_list **head, char *s)
@@ -66,6 +66,6 @@ t_list	*ft_push(t_list *node, t_list **head, char *s)
 	tmp = node->next;
 	node->next = *head;
 	*head = node;
-	ft_printf("%s\n", s);
+	ft_printf(1, "%s\n", s);
 	return (tmp);
 }
