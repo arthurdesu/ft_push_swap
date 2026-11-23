@@ -6,7 +6,7 @@
 /*   By: mamehri <mamehri@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/21 14:25:59 by mamehri           #+#    #+#             */
-/*   Updated: 2026/11/21 14:30:46 by mamehri          ###   ########.fr       */
+/*   Updated: 2026/11/23 13:48:22 by mamehri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ t_list	*psh(t_list *node, t_list **head)
 	{
 		ft_lstclear(head);
 		ft_lstclear(&node);
-		ft_printf("Error\n");
+		ft_printf(2, "Error\n");
 		exit(1);
 	}
 	tmp = node->next;
