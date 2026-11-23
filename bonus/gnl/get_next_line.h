@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ymoubtas <ymoubtas@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: mamehri <mamehri@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/11/12 09:20:28 by ymoubtas          #+#    #+#             */
-/*   Updated: 2026/11/12 09:20:29 by ymoubtas         ###   ########.fr       */
+/*   Created: 2026/11/06 06:09:09 by mamehri           #+#    #+#             */
+/*   Updated: 2026/11/21 14:19:55 by mamehri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,22 @@
 # define GET_NEXT_LINE_H
 
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 10
+#  define BUFFER_SIZE 42
 # endif
 
 # include <unistd.h>
 # include <stdlib.h>
 
 char	*get_next_line(int fd);
-int		index_of(const char *s, int c);
-void	*ft_memcpy(void *dest, const void *src, size_t n);
-char	*free_s(char **s);
+
+char	*ft_strjoin(char *stash, char *buf);
+
+char	*ft_strdup(char *s);
+
+size_t	ft_strlen_gnl(const char *s);
+
+char	*ft_free(char **s);
+
+int		ft_is_newline(char c);
 
 #endif

@@ -3,56 +3,77 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ymoubtas <ymoubtas@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: mamehri <mamehri@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/11/12 09:20:16 by ymoubtas          #+#    #+#             */
-/*   Updated: 2026/11/12 09:20:17 by ymoubtas         ###   ########.fr       */
+/*   Created: 2026/11/06 06:11:31 by mamehri           #+#    #+#             */
+/*   Updated: 2026/11/21 14:21:14 by mamehri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-int	index_of(const char *s, int c)
+int	ft_is_newline(char c)
 {
-	unsigned char	ch;
-	int				i;
-
-	if (s == NULL)
-		return (0);
-	i = 0;
-	ch = c;
-	while (1)
-	{
-		if ((unsigned char)s[i] == ch)
-			return (i);
-		if ((unsigned char)s[i] == '\0')
-			return (-1);
-		i++;
-	}
+	return (c == '\n');
 }
 
-void	*ft_memcpy(void *dest, const void *src, size_t n)
-{
-	const unsigned char	*p_src;
-	unsigned char		*p_dst;
-	size_t				i;
-
-	if (dest == src)
-		return (dest);
-	p_src = src;
-	p_dst = dest;
-	i = 0;
-	while (i < n)
-	{
-		p_dst[i] = p_src[i];
-		i++;
-	}
-	return (dest);
-}
-
-char	*free_s(char **s)
+char	*ft_free(char **s)
 {
 	free(*s);
 	*s = NULL;
 	return (NULL);
+}
+
+size_t	ft_strlen_gnl(const char *s)
+{
+	size_t	len;
+
+	len = 0;
+	while (s[len])
+		len++;
+	return (len);
+}
+
+char	*ft_strdup(char *s)
+{
+	char	*dup;
+	int		i;
+
+	i = 0;
+	dup = malloc(ft_strlen_gnl(s) + 1);
+	if (!dup)
+		return (NULL);
+	while (s[i])
+	{
+		dup[i] = s[i];
+		i++;
+	}
+	dup[i] = '\0';
+	return (dup);
+}
+
+char	*ft_strjoin(char *stash, char *buf)
+{
+	int		i;
+	int		j;
+	char	*join;
+
+	if (!stash && !buf)
+		return (NULL);
+	else if (!stash)
+		return (ft_strdup(buf));
+	else if (!buf)
+		return (ft_strdup(stash));
+	i = 0;
+	j = 0;
+	join = malloc(ft_strlen_gnl(stash) + ft_strlen_gnl(buf) + 1);
+	if (!join)
+		return (NULL);
+	while (stash[i])
+		join[j++] = stash[i++];
+	i = 0;
+	while (buf[i])
+		join[j++] = buf[i++];
+	join[j] = '\0';
+	return (join);
 }

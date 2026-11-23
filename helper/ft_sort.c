@@ -6,7 +6,7 @@
 /*   By: mamehri <mamehri@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/20 21:17:47 by mamehri           #+#    #+#             */
-/*   Updated: 2026/11/21 09:50:30 by mamehri          ###   ########.fr       */
+/*   Updated: 2026/11/22 14:39:18 by mamehri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,12 +67,12 @@ static float	ft_disorder(t_list *stack_a)
 	return ((float)mistakes / total_pairs);
 }
 
-static void	adapt_algo(t_list **stack_a, t_count *count_op, t_flags *flags)
+static void	adapt_algo(t_list **stack_a, t_list **stack_b, t_count *count_op, t_flags *flags)
 {
 	if (count_op->disorder < 0.2)
 	{
 		flags->simple = 1;
-		bubble_sort(stack_a, count_op);
+		bubble_sort(stack_a, stack_b, count_op);
 	}
 	else if (count_op->disorder < 0.5)
 	{
@@ -89,17 +89,19 @@ static void	adapt_algo(t_list **stack_a, t_count *count_op, t_flags *flags)
 void	ft_sort(t_list **stack_a, t_flags *flags)
 {
 	t_count	count_op;
+	t_list	*stack_b;
 
+	stack_b = NULL;
 	count_op = (t_count){0};
 	count_op.disorder = ft_disorder(*stack_a);
 	if (flags->simple)
-		bubble_sort(stack_a, &count_op);
+		bubble_sort(stack_a, &stack_b, &count_op);
 	else if (flags->medium)
 		chunk_sort(stack_a, &count_op);
 	else if (flags->complex)
 		radix_sort(stack_a, &count_op);
 	else
-		adapt_algo(stack_a, &count_op, flags);
+		adapt_algo(stack_a, &stack_b, &count_op, flags);
 	if (flags->bench)
 		ft_bench(flags, &count_op);
 }
