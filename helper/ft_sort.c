@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_sort.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ymoubtas <ymoubtas@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: mamehri <mamehri@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/23 10:21:24 by ymoubtas          #+#    #+#             */
-/*   Updated: 2026/11/23 10:21:26 by ymoubtas         ###   ########.fr       */
+/*   Updated: 2026/11/24 10:05:05 by mamehri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,6 @@ static void	ft_bench(t_flags *flags_list, t_count *count_op)
 		ft_printf(2, "Medium / ");
 	else if (flags_list->complex)
 		ft_printf(2, "Complex / ");
-	else
-		ft_printf(2, "Adaptive / ");
 	if (flags_list->simple)
 		ft_printf(2, "O(n²)\n");
 	else if (flags_list->medium)
@@ -94,6 +92,8 @@ void	ft_sort(t_list **stack_a, t_flags *flags)
 	stack_b = NULL;
 	count_op = (t_count){0};
 	count_op.disorder = ft_disorder(*stack_a);
+	if (flags->simple || flags->medium || flags->complex)
+		flags->adaptive = 0;
 	if (flags->simple)
 		bubble_sort(stack_a, &stack_b, &count_op);
 	else if (flags->medium)

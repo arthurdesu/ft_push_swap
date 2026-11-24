@@ -6,7 +6,7 @@
 /*   By: mamehri <mamehri@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/20 11:48:38 by mamehri           #+#    #+#             */
-/*   Updated: 2026/11/21 09:50:38 by mamehri          ###   ########.fr       */
+/*   Updated: 2026/11/24 10:10:22 by mamehri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,12 @@ static int	set_falg(char *s, char *name, int *field)
 
 static int	has_mode(t_flags *f)
 {
-	return (f->simple || f->medium || f->complex || f->adaptive);
+	return (f->simple || f->medium || f->complex);
 }
 
 static void	ft_valid_flag(char *s, t_flags *flags)
 {
+	flags->adaptive = 1;
 	if (!has_mode(flags)
 		&& (set_falg(s, SIMPLE, &flags->simple)
 			|| set_falg(s, MEDIUM, &flags->medium)
