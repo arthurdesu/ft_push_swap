@@ -6,7 +6,7 @@
 /*   By: mamehri <mamehri@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/20 09:58:05 by mamehri           #+#    #+#             */
-/*   Updated: 2026/11/22 14:39:36 by mamehri          ###   ########.fr       */
+/*   Updated: 2026/11/24 18:17:35 by mamehri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,6 @@ void	chunk_sort(t_list **stack_a, t_count *count_op);
 void	bubble_sort(t_list **stack_a, t_list **stack_b, t_count *count_op);
 void	radix_sort(t_list **stack_a, t_count *count_op);
 
-// Helper:
-
 t_list			*ft_lstnew(int content);
 
 size_t			ft_strlen(const	char *str);
@@ -78,8 +76,6 @@ void			ft_sort(t_list **stack_a, t_flags *flags);
 void			ft_lstadd_back(t_list **lst, t_list *new);
 void			ft_flags(int ac, char **av, t_flags *flags, int *i);
 void			ft_stack_fill(t_list **stack_a, int ac, char **av, int i);
-
-// Moves:
 
 void			ft_r(t_list **head, char *s);
 void			ft_rr(t_list **head, char *s);

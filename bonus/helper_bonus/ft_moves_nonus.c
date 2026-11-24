@@ -6,11 +6,11 @@
 /*   By: mamehri <mamehri@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/21 14:25:59 by mamehri           #+#    #+#             */
-/*   Updated: 2026/11/23 13:48:22 by mamehri          ###   ########.fr       */
+/*   Updated: 2026/11/24 11:02:05 by mamehri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "checker.h"
+#include "../checker.h"
 
 void	sp(t_list *node1, t_list *node2)
 {

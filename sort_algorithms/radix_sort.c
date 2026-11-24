@@ -6,7 +6,7 @@
 /*   By: mamehri <mamehri@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/21 14:44:49 by mamehri           #+#    #+#             */
-/*   Updated: 2026/11/21 14:46:14 by mamehri          ###   ########.fr       */
+/*   Updated: 2026/11/24 11:22:04 by mamehri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,20 +22,6 @@ size_t	get_max_bits(int max_index)
 	return (bits);
 }
 
-int	max_index(t_list *list)
-{
-	int	big;
-
-	big = list->index;
-	while (list)
-	{
-		if (list->index > big)
-			big = list->index;
-		list = list->next;
-	}
-	return (big);
-}
-
 void	radix_sort(t_list **stack_a, t_count *count_op)
 {
 	t_list	*stack_b;
@@ -44,7 +30,7 @@ void	radix_sort(t_list **stack_a, t_count *count_op)
 	size_t	size;
 
 	stack_b = NULL;
-	max_bits = get_max_bits(max_index(*stack_a));
+	max_bits = get_max_bits(ft_lstsize(*stack_a));
 	bit = 0;
 	while (bit < max_bits)
 	{

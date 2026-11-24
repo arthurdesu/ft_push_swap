@@ -33,7 +33,8 @@ SRCS		= sort_algorithms/bubble_sort.c \
 
 SRCS_BNS	= bonus/checker.c \
 			bonus/gnl/get_next_line.c \
-			bonus/gnl/get_next_line_utils.c
+			bonus/gnl/get_next_line_utils.c \
+			bonus/helper_bonus/ft_moves_nonus.c
 
 HEADERS		= push_swap.h \
 			ft_printf/ft_printf.h
