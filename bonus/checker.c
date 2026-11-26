@@ -6,67 +6,77 @@
 /*   By: mamehri <mamehri@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/21 14:27:08 by mamehri           #+#    #+#             */
-/*   Updated: 2026/11/23 13:48:06 by mamehri          ###   ########.fr       */
+/*   Updated: 2026/11/26 16:22:14 by mamehri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "checker.h"
 
-static void	ft_operation(t_list **stack_a, t_list **stack_b, char *s)
+static void	ft_read_ops(t_list **a, t_ops_list **op)
 {
-	if (!ft_strncmp(s, "pb", 2))
-		*stack_a = psh(*stack_a, stack_b);
-	else if (!ft_strncmp(s, "pa", 2))
-		*stack_b = psh(*stack_b, stack_a);
-	else if (!ft_strncmp(s, "sa", 2))
-		sp(*stack_a, (*stack_a)->next);
-	else if (!ft_strncmp(s, "sb", 2))
-		sp(*stack_b, (*stack_b)->next);
-	else if (!ft_strncmp(s, "ra", 2))
-		rab(stack_a);
-	else if (!ft_strncmp(s, "rb", 2))
-		rab(stack_b);
-	else if (!ft_strncmp(s, "rrb", 3))
-		rrab(stack_b);
-	else if (!ft_strncmp(s, "rra", 3))
-		rrab(stack_a);
-	else
+	t_ops_list	*node;
+	char		*s;
+
+	while (1)
 	{
-		ft_lstclear(stack_a);
-		ft_lstclear(stack_b);
-		exit(ft_putstr_fd("Error\n", 2));
+		s = get_next_line(0);
+		if (!s)
+			break ;
+		node = bonus_lstnew(s);
+		if (!node)
+		{
+			ft_lstclear(a);
+			bonus_lstclear(op);
+			exit (ft_putstr_fd("Error\n", 2));
+		}
+		bonus_lstadd_back(op, node);
 	}
 }
 
-static void	checker(t_list **stack_a)
+static void	ft_apply_ops(t_list **a, t_list **b, t_ops_list **op)
 {
-	t_list	*stack_b;
-	char	*s;
+	t_ops_list	*node;
+	int			check;
 
-	stack_b = NULL;
-	s = get_next_line(0);
-	while (s != NULL)
+	node = *op;
+	while (node)
 	{
-		ft_operation(stack_a, &stack_b, s);
-		free(s);
-		s = get_next_line(0);
+		check = ft_ops(a, b, node->op);
+		if (!check)
+		{
+			bonus_lstclear(op);
+			exit (ft_putstr_fd("Error\n", 2));
+		}
+		node = node->next;
 	}
-	if (stack_b == NULL && is_sort(*stack_a) == 1)
-		ft_printf(1, "OK\n");
+	bonus_lstclear(op);
+}
+
+static void	checker(t_list **a, t_list **b)
+{
+	t_ops_list	*op;
+
+	op = NULL;
+	ft_read_ops(a, &op);
+	ft_apply_ops(a, b, &op);
+	if (*b == NULL && is_sort(*a))
+		ft_dprintf(1, "OK\n");
 	else
-		ft_printf(1, "KO\n");
+		ft_dprintf(1, "KO\n");
 }
 
 int	main(int argc, char **argv)
 {
-	t_list	*stack_a;
+	t_list	*a;
+	t_list	*b;
 	int		i;
 
+	i = 1;
+	a = NULL;
+	b = NULL;
 	if (argc <= 1)
 		return (0);
-	i = 1;
-	stack_a = NULL;
-	ft_stack_fill(&stack_a, argc, argv, i);
-	checker(&stack_a);
-	ft_lstclear(&stack_a);
+	ft_stack_fill(&a, argc, argv, i);
+	checker(&a, &b);
+	ft_lstclear(&a);
 }

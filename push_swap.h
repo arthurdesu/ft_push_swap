@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: mamehri <mamehri@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/11/20 09:58:05 by mamehri           #+#    #+#             */
-/*   Updated: 2026/11/26 11:49:53 by mamehri          ###   ########.fr       */
+/*   Created: 2026/11/26 16:31:31 by mamehri           #+#    #+#             */
+/*   Updated: 2026/11/26 16:31:55 by mamehri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,19 +57,18 @@ void			chunk_sort(t_list **a, t_list **b, t_count *ops);
 void			radix_sort(t_list **a, t_list **b, t_count *ops);
 
 void			push(t_list **from, t_list **to);
-void			reverse_rotate(t_list **stack);
-void			rotate(t_list **stack);
-void			swap(t_list *lst);
-
 void			pa(t_list **b, t_list **a, t_count *ops);
 void			pb(t_list **a, t_list **b, t_count *ops);
 
+void			reverse_rotate(t_list **stack);
 void			rra(t_list **a, t_count *ops);
 void			rrb(t_list **b, t_count *ops);
 
+void			rotate(t_list **stack);
 void			ra(t_list **a, t_count *ops);
 void			rb(t_list **b, t_count *ops);
 
+void			swap(t_list *lst);
 void			sa(t_list *a, t_count *ops);
 void			sb(t_list *b, t_count *ops);
 
@@ -82,7 +81,6 @@ char			**ft_split(char const *s, char c);
 
 int				sqrt_of(long n);
 int				max_pos(t_list *list);
-int				ft_lstclear(t_list **lst);
 int				ft_putstr_fd(char *s, int fd);
 int				ft_atoi(const char *nptr, int *check);
 int				ft_strncmp(const char *s1, const char *s2, size_t n);
@@ -90,8 +88,9 @@ int				is_sort(t_list *head);
 
 unsigned int	ft_lstsize(t_list *lst);
 
-void			ft_set_index(t_list *a);
 void			ft_dup_nbr(t_list **a);
+void			ft_set_index(t_list *a);
+void			ft_lstclear(t_list **lst);
 void			ft_sort(t_list **a, t_flags *flags);
 void			ft_lstadd_back(t_list **lst, t_list *new);
 void			ft_flags(int ac, char **av, t_flags *flags, int *i);
