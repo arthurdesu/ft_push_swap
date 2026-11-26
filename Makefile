@@ -27,20 +27,27 @@ SRCS		= sort_algorithms/bubble_sort.c \
 			helper/ft_sqrt.c \
 			helper/in_range.c \
 			helper/max_pos.c \
+			moves/ft_push.c \
+			moves/ft_swap.c \
+			moves/ft_rotate.c \
+			moves/ft_reverce_rotate.c \
 			ft_dprintf/ft_printaddress.c \
 			ft_dprintf/ft_printchar.c \
 			ft_dprintf/ft_dprintf.c \
 			ft_dprintf/ft_printnbr_base.c \
-			ft_dprintf/ft_printstr.c \
-			moves/ft_push.c \
-			moves/ft_swap.c \
-			moves/ft_rotate.c \
-			moves/ft_reverce_rotate.c
+			ft_dprintf/ft_printstr.c
 
 SRCS_BNS	= bonus/checker.c \
 			bonus/gnl/get_next_line.c \
 			bonus/gnl/get_next_line_utils.c \
-			bonus/helper_bonus/ft_moves_nonus.c
+			bonus/moves/bonus_push.c \
+			bonus/moves/bonus_swap.c \
+			bonus/moves/bonus_rotate.c \
+			bonus/moves/bonus_reverce_rotate.c \
+			bonus/helper/ft_ops.c \
+			bonus/helper/bonus_lstadd_back.c \
+			bonus/helper/bonus_lstclear.c \
+			bonus/helper/bonus_lstnew.c
 
 HEADERS		= push_swap.h \
 			ft_dprintf/ft_dprintf.h
