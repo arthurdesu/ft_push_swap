@@ -6,53 +6,50 @@
 /*   By: mamehri <mamehri@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/21 14:44:49 by mamehri           #+#    #+#             */
-/*   Updated: 2026/11/24 11:22:04 by mamehri          ###   ########.fr       */
+/*   Updated: 2026/11/26 11:28:10 by mamehri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-size_t	get_max_bits(int max_index)
+int	ft_bits(t_list *a)
 {
-	size_t	bits;
+	int	max;
+	int	bits;
 
 	bits = 0;
-	while ((max_index >> bits) != 0)
+	max = a->index;
+	while (a)
+	{
+		if (a->index > max)
+			max = a->index;
+		a = a->next;
+	}
+	while (max >> bits)
 		bits++;
 	return (bits);
 }
 
-void	radix_sort(t_list **stack_a, t_count *count_op)
+void	radix_sort(t_list **a, t_list **b, t_count *ops)
 {
-	t_list	*stack_b;
-	size_t	max_bits;
-	size_t	bit;
-	size_t	size;
+	int		size_a;
+	int		bits;
+	int		bit;
 
-	stack_b = NULL;
-	max_bits = get_max_bits(ft_lstsize(*stack_a));
 	bit = 0;
-	while (bit < max_bits)
+	bits = ft_bits(*a);
+	while (bit < bits)
 	{
-		size = ft_lstsize(*stack_a);
-		while (size--)
+		size_a = ft_lstsize(*a);
+		while (size_a--)
 		{
-			if (((*stack_a)->index >> bit) & 1)
-			{
-				ft_r(stack_a, "ra");
-				count_op->ra++;
-			}
+			if (((*a)->index >> bit) & 1)
+				ra(a, ops);
 			else
-			{
-				count_op->pb++;
-				*stack_a = ft_push(*stack_a, &stack_b, "pb");
-			}
+				pb(a, b, ops);
 		}
-		while (stack_b)
-		{
-			count_op->pa++;
-			stack_b = ft_push(stack_b, stack_a, "pa");
-		}
+		while ((*b))
+			pa(b, a, ops);
 		bit++;
 	}
 }

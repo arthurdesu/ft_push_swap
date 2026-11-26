@@ -6,155 +6,84 @@
 /*   By: mamehri <mamehri@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/20 15:00:29 by mamehri           #+#    #+#             */
-/*   Updated: 2026/11/24 18:16:09 by mamehri          ###   ########.fr       */
+/*   Updated: 2026/11/26 11:27:44 by mamehri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-static int	sqrt_of(long n)
+static void	bring_to_top_a(t_list **a, size_t limit, size_t size, t_count *ops)
 {
-	long	i;
-
-	i = 0;
-	while (i * i <= n)
-		i++;
-	return (i);
-}
-
-size_t	min_pos(t_list *list, int limit)
-{
-	t_list	*curr;
-	int		minimum;
 	size_t	pos;
 
-	curr = list;
-	while (curr)
-	{
-		if (curr->index < limit)
-			minimum = curr->content;
-		curr = curr->next;
-	}
-	pos = 0;
-	while (list && list->content != minimum)
-	{
-		pos++;
-		list = list->next;
-	}
-	return (pos);
-}
-
-void	rotate_a(t_list **stack_a, t_count *count_op, int limit)
-{
-	size_t	size;
-	size_t	min;
-
-	size = ft_lstsize(*stack_a);
-	min = min_pos(*stack_a, limit);
-	if (min <= size / 2)
-	{
-		while (min--)
-		{
-			count_op->ra++;
-			ft_r(stack_a, "ra");
-		}
-	}
+	pos = in_range(*a, limit);
+	if (pos < size - pos)
+		while (pos--)
+			ra(a, ops);
 	else
 	{
-		min = size - min;
-		while (min--)
-		{
-			count_op->rra++;
-			ft_rr(stack_a, "rra");
-		}
+		pos = size - pos;
+		while (pos--)
+			rra(a, ops);
 	}
 }
 
-static int	max_pos(t_list *list)
+static void	bring_to_top_b(t_list **b, size_t pos, size_t size, t_count *ops)
 {
-	t_list	*curr;
-	int		value;
-	int		pos;
-
-	curr = list;
-	value = list->content;
-	while (curr)
-	{
-		if (curr->content > value)
-			value = curr->content;
-		curr = curr->next;
-	}
-	pos = 0;
-	while (list && list->content != value)
-	{
-		pos++;
-		list = list->next;
-	}
-	return (pos);
-}
-
-void	rotate_b(t_list **stack_b, t_count *count_op)
-{
-	size_t	size;
-	size_t	max;
-
-	size = ft_lstsize(*stack_b);
-	max = max_pos(*stack_b);
-	if (max <= size / 2)
-	{
-		while (max--)
-		{
-			count_op->rb++;
-			ft_r(stack_b, "rb");
-		}
-	}
+	if (pos < size - pos)
+		while (pos--)
+			rb(b, ops);
 	else
 	{
-		max = size - max;
-		while (max--)
-		{
-			count_op->rrb++;
-			ft_rr(stack_b, "rrb");
-		}
+		pos = size - pos;
+		while (pos--)
+			rrb(b, ops);
 	}
 }
 
-void	move_to_b(t_list **stack_a, t_list **stack_b, t_count *count_op)
+static void	phase_1(t_list **a, t_list **b, t_count *ops)
 {
-	int	n_chunks;
-	int	size_a;
-	int	limit;
-	int	pushed;
+	size_t		size;
+	int			offset;
+	int			pushed;
 
-	size_a = ft_lstsize(*stack_a);
-	n_chunks = sqrt_of(size_a);
-	limit = size_a / n_chunks;
+	size = ft_lstsize(*a);
+	offset = sqrt_of(size);
 	pushed = 0;
-	while (*stack_a)
+	while (*a)
 	{
-		if ((*stack_a)->index < limit)
+		if ((*a)->index <= pushed + offset)
 		{
-			*stack_a = ft_push(*stack_a, stack_b, "pb");
-			count_op->pb++;
+			pb(a, b, ops);
+			if ((*b)->index <= pushed)
+				rb(b, ops);
 			pushed++;
-			if (pushed == limit)
-				limit += (size_a / n_chunks);
+			size--;
 		}
 		else
-			rotate_a(stack_a, count_op, limit);
-	}
-	while (*stack_b)
-	{
-		rotate_b(stack_b, count_op);
-		*stack_b = ft_push(*stack_b, stack_a, "pa");
-		count_op->pa++;
+			bring_to_top_a(a, pushed + offset + 1, size, ops);
 	}
 }
 
-void	chunk_sort(t_list **stack_a, t_count *count_op)
+static void	phase_2(t_list **a, t_list **b, t_count *ops)
 {
-	t_list	*stack_b;
+	size_t		size;
+	size_t		pos;
 
-	stack_b = NULL;
-	move_to_b(stack_a, &stack_b, count_op);
+	size = ft_lstsize(*b);
+	while (*b)
+	{
+		pos = max_pos(*b);
+		bring_to_top_b(b, pos, size, ops);
+		pa(b, a, ops);
+		size--;
+	}
+}
+
+void	chunk_sort(t_list **a, t_list **b, t_count *ops)
+{
+	if (is_sort(*a))
+		return ;
+	phase_1(a, b, ops);
+	phase_2(a, b, ops);
 }

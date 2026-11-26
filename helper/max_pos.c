@@ -1,29 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printstr.c                                      :+:      :+:    :+:   */
+/*   max_pos.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mamehri <mamehri@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/11/02 14:11:07 by ymoubtas          #+#    #+#             */
-/*   Updated: 2026/11/23 13:48:00 by mamehri          ###   ########.fr       */
+/*   Created: 2026/11/26 11:27:14 by mamehri           #+#    #+#             */
+/*   Updated: 2026/11/26 11:27:15 by mamehri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "../push_swap.h"
 
-int	ft_printstr(int fd, char *s)
+int	max_pos(t_list *list)
 {
-	int	count;
+	t_list	*curr;
+	int		value;
+	int		pos;
 
-	if (!s)
-		return (ft_printstr(fd, "(null)"));
-	count = 0;
-	while (s[count])
+	curr = list;
+	value = list->content;
+	while (curr)
 	{
-		if (ft_printchar(fd, s[count]) < 0)
-			return (-1);
-		count++;
+		if (curr->content > value)
+			value = curr->content;
+		curr = curr->next;
 	}
-	return (count);
+	pos = 0;
+	while (list && list->content != value)
+	{
+		pos++;
+		list = list->next;
+	}
+	return (pos);
 }

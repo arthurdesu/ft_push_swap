@@ -6,7 +6,7 @@
 /*   By: mamehri <mamehri@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/21 14:25:59 by mamehri           #+#    #+#             */
-/*   Updated: 2026/11/24 11:02:05 by mamehri          ###   ########.fr       */
+/*   Updated: 2026/11/26 11:16:19 by mamehri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void	rrab(t_list **head)
 		{
 			last = curr->next;
 			curr->next = NULL;
-			break;
+			break ;
 		}
 		curr = curr->next;
 	}

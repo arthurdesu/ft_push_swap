@@ -1,27 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   ft_dprintf.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mamehri <mamehri@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/02 14:10:48 by ymoubtas          #+#    #+#             */
-/*   Updated: 2026/11/23 13:47:45 by mamehri          ###   ########.fr       */
+/*   Updated: 2026/11/26 11:33:17 by mamehri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "ft_dprintf.h"
 
 static int	ft_conversion(int fd, va_list ap, char data_type)
 {
+	char	*base[3];
+
+	base[0] = "0123456789";
+	base[1] = "0123456789abcdef";
+	base[2] = "0123456789ABCDEF";
 	if (data_type == 'd' || data_type == 'i')
-		return (ft_printnbr_base(fd, va_arg(ap, int), "0123456789"));
+		return (ft_printnbr_base(fd, va_arg(ap, int), base[0]));
 	if (data_type == 'u')
-		return (ft_printnbr_base(fd, va_arg(ap, unsigned int), "0123456789"));
+		return (ft_printnbr_base(fd, va_arg(ap, unsigned int), base[0]));
 	if (data_type == 'x')
-		return (ft_printnbr_base(fd, va_arg(ap, unsigned int), "0123456789abcdef"));
+		return (ft_printnbr_base(fd, va_arg(ap, unsigned int), base[1]));
 	if (data_type == 'X')
-		return (ft_printnbr_base(fd, va_arg(ap, unsigned int), "0123456789ABCDEF"));
+		return (ft_printnbr_base(fd, va_arg(ap, unsigned int), base[2]));
 	if (data_type == 'c')
 		return (ft_printchar(fd, va_arg(ap, int)));
 	if (data_type == 's')
@@ -59,7 +64,7 @@ static int	ft_process(int fd, const char *f, va_list ap)
 	return (count);
 }
 
-int	ft_printf(int fd, const char *f, ...)
+int	ft_dprintf(int fd, const char *f, ...)
 {
 	va_list	ap;
 	int		count;

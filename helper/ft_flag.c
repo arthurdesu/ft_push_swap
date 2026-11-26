@@ -6,7 +6,7 @@
 /*   By: mamehri <mamehri@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/20 11:48:38 by mamehri           #+#    #+#             */
-/*   Updated: 2026/11/24 10:10:22 by mamehri          ###   ########.fr       */
+/*   Updated: 2026/11/26 10:02:16 by mamehri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	ft_flags(int ac, char **av, t_flags *flags, int *i)
 		return ;
 	while (*i <= 2 && is_flag(av[*i], "--"))
 	{
-		if (is_flag(av[*i], av[*i + 1]))
+		if (!av[*i + 1] || is_flag(av[*i], av[*i + 1]))
 			exit (ft_putstr_fd("Error\n", 2));
 		ft_valid_flag(av[(*i)++], flags);
 	}

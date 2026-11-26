@@ -6,7 +6,7 @@
 /*   By: mamehri <mamehri@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/20 09:57:48 by mamehri           #+#    #+#             */
-/*   Updated: 2026/11/24 18:17:14 by mamehri          ###   ########.fr       */
+/*   Updated: 2026/11/26 11:19:59 by mamehri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,3 +30,12 @@ int	main(int ac, char **av)
 	ft_lstclear(&stack_a);
 	return (0);
 }
+
+// ft_dprintf(1, "\n================================\n");
+// t_list	*curr = stack_a;
+// while (curr)
+// {
+// 	ft_dprintf(1, "%d ", curr->content);
+// 	curr = curr->next;
+// }
+// ft_dprintf(1, "\n================================\n");
