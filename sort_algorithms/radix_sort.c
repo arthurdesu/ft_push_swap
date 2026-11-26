@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   radix_sort.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mamehri <mamehri@student.1337.ma>          +#+  +:+       +#+        */
+/*   By: ymoubtas <ymoubtas@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/21 14:44:49 by mamehri           #+#    #+#             */
-/*   Updated: 2026/11/26 11:28:10 by mamehri          ###   ########.fr       */
+/*   Updated: 2026/11/26 11:46:04 by ymoubtas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-int	ft_bits(t_list *a)
+static int	ft_bits(t_list *a)
 {
 	int	max;
 	int	bits;

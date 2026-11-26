@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mamehri <mamehri@student.1337.ma>          +#+  +:+       +#+        */
+/*   By: ymoubtas <ymoubtas@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/20 09:58:05 by mamehri           #+#    #+#             */
-/*   Updated: 2026/11/26 11:26:55 by mamehri          ###   ########.fr       */
+/*   Updated: 2026/11/26 11:49:16 by ymoubtas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,11 @@ typedef struct s_count
 void			selection_sort(t_list **a, t_list **b, t_count *ops);
 void			chunk_sort(t_list **a, t_list **b, t_count *ops);
 void			radix_sort(t_list **a, t_list **b, t_count *ops);
+
+void			push(t_list **from, t_list **to);
+void			reverse_rotate(t_list **stack);
+void			rotate(t_list **stack);
+void			swap(t_list *lst);
 
 void			pa(t_list **b, t_list **a, t_count *ops);
 void			pb(t_list **a, t_list **b, t_count *ops);
